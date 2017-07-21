@@ -458,6 +458,11 @@ class ContentExtractor(object):
         if top_meta_image is None:
             top_meta_image = self.get_meta_content(doc, 'meta[name="og:image"]')
 
+        if top_meta_image is None:
+            top_meta_image = self.get_meta_content(doc, 'meta[name="og:image:secure_url"]')
+
+        if top_meta_image is None:
+            top_meta_image = self.get_meta_content(doc, 'meta[name="og:image:url"]')
 
         if top_meta_image:
             return urljoin(article_url, top_meta_image)
